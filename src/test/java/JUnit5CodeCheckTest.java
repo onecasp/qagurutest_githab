@@ -6,35 +6,10 @@ import static com.codeborne.selenide.Selenide.open;
 import com.codeborne.selenide.CollectionCondition;
 import org.junit.jupiter.api.Test;
 
-public class JUnit5TestGitHub {
-
+public class JUnit5CodeCheckTest {
     @Test
-    void jUnit5codechecker() {
+    void jUnit5CodeChecker() {
 
-        //open Selenide in Github
-        open("https://github.com/selenide/selenide");
-
-        // got to Wiki
-        $("#wiki-tab").click();
-
-        //check that we are on Wiki page
-        $("#wiki-body").shouldHave(text("Welcome to the selenide wiki!"));
-
-        // - Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
-        $$("[data-filterable-for=wiki-pages-filter] li a").should(
-            CollectionCondition.containExactTextsCaseSensitive("SoftAssertions"));
-
-        //раскрыть список, чтоб сделать элемент clickable
-        $(".wiki-more-pages-link button").click();
-
-        //кликнуть на "SoftAssertions"
-        $$("[data-filterable-for=wiki-pages-filter] li a").filterBy(text("SoftAssertions")).first()
-            .click();
-
-        //убедимся, что мы на нужной странице
-        $(".repository-content h1").shouldHave(text("SoftAssertions"));
-
-        //искомые строки кода
         String JUnit5Code1 = "@ExtendWith({SoftAssertsExtension.class})\n"
             + "class Tests {\n"
             + "  @Test\n"
@@ -61,8 +36,24 @@ public class JUnit5TestGitHub {
             + "  }\n"
             + "}";
 
-        //проверка наличия кода
+        open("https://github.com/selenide/selenide");
+
+        $("#wiki-tab").click();
+
+        $("#wiki-body").shouldHave(text("Welcome to the selenide wiki!"));
+
+        $$("[data-filterable-for=wiki-pages-filter] li a").should(
+            CollectionCondition.containExactTextsCaseSensitive("SoftAssertions"));
+
+        $(".wiki-more-pages-link button").click();
+
+        $$("[data-filterable-for=wiki-pages-filter] li a").filterBy(text("SoftAssertions")).first()
+            .click();
+
+        $(".repository-content h1").shouldHave(text("SoftAssertions"));
+
         $("#wiki-body").shouldHave(text(JUnit5Code1));
         $("#wiki-body").shouldHave(text(JUnit5Code2));
     }
+
 }
