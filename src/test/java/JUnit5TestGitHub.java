@@ -1,15 +1,9 @@
-import static com.codeborne.selenide.Condition.exactOwnTextCaseSensitive;
-import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.textCaseSensitive;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.Test;
 
 public class JUnit5TestGitHub {
