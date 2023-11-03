@@ -6,10 +6,10 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 
-public class SolutionEnterprizeGitHub {
+public class SolutionEnterprizeGitHubTest {
 
     @Test
-    void jUnit5codechecker() {
+    void HoverAndEnterprizePageOpening() {
 
         Configuration.holdBrowserOpen = true;
         //open Selenide in Github
