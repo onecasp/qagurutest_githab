@@ -11,36 +11,38 @@ import org.junit.jupiter.api.Test;
 public class DragAndDropTest {
 
 
+    SelenideElement elementA = $("#column-a");
+    SelenideElement elementB = $("#column-b");
     @Test
-    void MoveByDragAndDrop() {
+    void moveByDragAndDrop() {
         open("https://the-internet.herokuapp.com/drag_and_drop");
 
         //check firstly if blocks are in correct positions
-        $("#column-a").shouldHave(exactText("A"));
-        $("#column-b").shouldHave(exactText("B"));
+        elementA.shouldHave(exactText("A"));
+        elementB.shouldHave(exactText("B"));
 
         //move them (drag and drop) by wedElement.dragAndDrop
-        $("#column-a").dragAndDrop(DragAndDropOptions.to($("#column-b")));
+        elementA.dragAndDrop(DragAndDropOptions.to(elementB));
 
-        //check if blocks are in correct positions afer moving
-        $("#column-a").shouldHave(exactText("B"));
-        $("#column-b").shouldHave(exactText("A"));
+        //check if blocks are in correct positions after moving
+        elementA.shouldHave(exactText("B"));
+        elementB.shouldHave(exactText("A"));
     }
 
     @Test
-    void MoveByActions() {
+    void moveByActions() {
         open("https://the-internet.herokuapp.com/drag_and_drop");
 
         //check firstly if blocks are in correct positions
-        $("#column-a").shouldHave(exactText("A"));
-        $("#column-b").shouldHave(exactText("B"));
+        elementA.shouldHave(exactText("A"));
+        elementB.shouldHave(exactText("B"));
 
         //move them (drag and drop) by wedElement.dragAndDrop
-        SelenideElement element = $("#column-a");
-        actions().dragAndDropBy(element, 200, 0).perform();
 
-        //check if blocks are in correct positions afer moving
-        $("#column-a").shouldHave(exactText("B"));
-        $("#column-b").shouldHave(exactText("A"));
+        actions().dragAndDropBy(elementA, 200, 0).perform();
+
+        //check if blocks are in correct positions after moving
+        elementA.shouldHave(exactText("B"));
+        elementB.shouldHave(exactText("A"));
     }
 }
